@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #191918;
+  --color-ivory: #F3EEE4;
+  --color-bronze: #806342;
+  --color-forest: #354138;
+
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-ivory text-midnight antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply font-medium tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-bronze/30 text-midnight;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-bronze ring-offset-2 ring-offset-ivory;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide uppercase text-ivory bg-midnight border border-midnight hover:bg-transparent hover:text-midnight transition-all duration-300 ease-out;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide uppercase text-midnight bg-transparent border border-midnight hover:bg-midnight hover:text-ivory transition-all duration-300 ease-out;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium tracking-wide uppercase text-white bg-[#25D366] hover:bg-[#1DB954] transition-colors duration-200;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 text-midnight bg-transparent border border-midnight/20 focus:border-bronze focus:outline-none transition-colors duration-200 placeholder:text-midnight/40;
+  }
+
+  .section-divider {
+    @apply w-24 h-px bg-bronze/40 mx-auto my-12;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .image-zoom {
+    @apply transition-transform duration-700 ease-out group-hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
