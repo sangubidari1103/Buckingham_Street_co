@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { businessConfig } from '@/config/business'
 
@@ -198,19 +199,29 @@ export function Navigation() {
           <div className="flex items-center gap-8 z-10">
             <Link
               href="/"
-              className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2 focus-visible:ring-offset-ivory rounded"
+              className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2 focus-visible:ring-offset-ivory rounded"
               aria-label={`${businessConfig.brand.retail} · ${businessConfig.brand.parent} - Home`}
             >
-              <span className="text-charcoal font-serif text-xl sm:text-2xl font-medium tracking-tight">
-                {businessConfig.brand.retail}
-              </span>
-              <span className="hidden sm:inline-block w-px h-6 bg-charcoal/20" aria-hidden="true" />
-              <span className="text-charcoal/60 text-xs sm:text-sm tracking-widest uppercase font-sans">
-                {businessConfig.brand.parent}
-              </span>
+              <Image
+                src="/images/logo.png"
+                alt=""
+                width={48}
+                height={48}
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                priority
+                aria-hidden="true"
+              />
+              <div className="flex flex-col">
+                <span className="text-charcoal font-serif text-xl sm:text-2xl font-medium tracking-tight">
+                  {businessConfig.brand.retail}
+                </span>
+                <span className="text-charcoal/60 text-xs sm:text-sm tracking-widest uppercase font-sans">
+                  {businessConfig.brand.parent}
+                </span>
+              </div>
             </Link>
 
-            <div className="hidden lg:flex items-center gap-0.5" role="menubar">
+            <div className="hidden md:flex items-center gap-0.5" role="menubar">
               {mainNavItems.map((item) => {
                 const isActive = isActivePath(item.href)
                 const hasMegaMenu = item.hasMegaMenu
@@ -301,7 +312,7 @@ export function Navigation() {
           <div className="flex items-center gap-4 md:gap-6 z-10">
             <button
               type="button"
-              className="lg:hidden p-2 -ml-2 text-charcoal hover:text-maroon transition-colors"
+              className="md:hidden p-2 -ml-2 text-charcoal hover:text-maroon transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -336,7 +347,7 @@ export function Navigation() {
 
         <div
           id="mobile-menu"
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-out ${
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
             isMobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
           }`}
           aria-hidden={!isMobileMenuOpen}
