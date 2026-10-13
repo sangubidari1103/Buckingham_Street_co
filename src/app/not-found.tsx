@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { Navigation } from '@/components/Navigation'
+import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { Footer } from '@/components/Footer'
 
 export default function NotFound() {
   return (
     <>
-      <Navigation />
+      <NavigationWrapper />
       <main id="main-content" role="main" className="pt-16 sm:pt-20 min-h-[60vh] flex items-center justify-center bg-ivory">
         <div className="text-center px-6">
           <svg className="w-16 h-16 mx-auto mb-6 text-midnight/20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

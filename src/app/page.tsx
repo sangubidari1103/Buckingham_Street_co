@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Navigation } from '@/components/Navigation'
+import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { Footer } from '@/components/Footer'
 import { Hero } from '@/components/Hero'
 import { FeaturedCollections } from '@/components/FeaturedCollections'
@@ -11,13 +11,13 @@ import { VisitUsCTA } from '@/components/VisitUsCTA'
 export const metadata: Metadata = {
   title: 'Suit Galleria · Buckingham Street Co.',
   description:
-    'Suit Galleria, the retail destination for Buckingham Street Co. British heritage tailoring, Italian luxury fabrics, and contemporary atelier craftsmanship.',
+    'Suit Galleria, the retail destination for Buckingham Street Co. Contemporary Indian menswear with subtle Karnataka heritage.',
 }
 
 export default function HomePage() {
   return (
     <>
-      <Navigation />
+      <NavigationWrapper />
       <main id="main-content" role="main">
         <Hero />
         <FeaturedCollections />

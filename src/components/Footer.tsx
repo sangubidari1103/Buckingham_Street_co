@@ -11,13 +11,13 @@ export function Footer() {
   const hasFacebook = Boolean(social.facebook)
 
   return (
-    <footer className="bg-midnight text-ivory" role="contentinfo">
+    <footer className="bg-charcoal text-ivory" role="contentinfo">
       <div className="container-custom py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           <div className="lg:col-span-1">
             <Link
               href="/"
-              className="flex items-center gap-2 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 focus-visible:ring-offset-midnight rounded"
+              className="flex items-center gap-2 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal rounded"
               aria-label={`${brand.retail} · ${brand.parent} - Home`}
             >
               <span className="text-2xl font-serif font-medium tracking-tight">
@@ -32,8 +32,8 @@ export function Footer() {
               {brand.tagline}
             </p>
             <p className="text-ivory/40 text-xs leading-relaxed max-w-xs">
-              Curated menswear for the modern gentleman. British heritage tailoring
-              meets Italian luxury.
+              Curated menswear for the modern gentleman. Contemporary Indian
+              classics with subtle Karnataka heritage.
             </p>
           </div>
 
@@ -45,41 +45,41 @@ export function Footer() {
               <li>
                 <Link
                   href="/collections?category=formalwear"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
-                  Formalwear
+                  Suits & Blazers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/collections?category=blazers"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
+                >
+                  Bundis
                 </Link>
               </li>
               <li>
                 <Link
                   href="/collections?category=wedding"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
                   Wedding & Occasion
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/collections?category=blazers"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
-                >
-                  Blazers
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/collections?category=shirts"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
-                  Shirts
+                  Shirts & Formalwear
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/collections?category=smart-casual"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  href="/collections"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
-                  Smart Casual
+                  All Collections
                 </Link>
               </li>
             </ul>
@@ -93,7 +93,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/our-story"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
                   Our Story
                 </Link>
@@ -101,7 +101,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/visit-us"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
                   Visit Us
                 </Link>
@@ -109,9 +109,9 @@ export function Footer() {
               <li>
                 <Link
                   href="/collections"
-                  className="text-ivory/70 hover:text-ivory transition-colors duration-200 text-sm"
+                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >
-                  View All Collections
+                  New Arrivals
                 </Link>
               </li>
             </ul>
@@ -142,7 +142,7 @@ export function Footer() {
               {hasPhone && (
                 <a
                   href={`tel:${contact.phone.replace(/\s/g, '')}`}
-                  className="inline-block text-ivory/70 hover:text-bronze transition-colors duration-200"
+                  className="inline-block text-ivory/70 hover:text-gold transition-colors duration-200"
                 >
                   {contact.phone}
                 </a>
@@ -150,7 +150,7 @@ export function Footer() {
               {hasEmail && (
                 <a
                   href={`mailto:${contact.email}`}
-                  className="inline-block text-ivory/70 hover:text-bronze transition-colors duration-200"
+                  className="inline-block text-ivory/70 hover:text-gold transition-colors duration-200"
                 >
                   {contact.email}
                 </a>
@@ -169,7 +169,7 @@ export function Footer() {
                     href={social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ivory/50 hover:text-bronze transition-colors duration-200"
+                    className="text-ivory/50 hover:text-gold transition-colors duration-200"
                     aria-label="Instagram"
                   >
                     <svg
@@ -189,7 +189,7 @@ export function Footer() {
                     href={social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ivory/50 hover:text-bronze transition-colors duration-200"
+                    className="text-ivory/50 hover:text-gold transition-colors duration-200"
                     aria-label="Facebook"
                   >
                     <svg

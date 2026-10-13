@@ -9,10 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        midnight: '#191918',
-        ivory: '#F3EEE4',
-        bronze: '#806342',
-        forest: '#354138',
+        charcoal: '#1C1C1C',
+        ivory: '#F5F0E8',
+        maroon: '#7B2D2D',
+        gold: '#B8860B',
+        'warm-neutral': '#D4C4B0',
+        'charcoal-light': '#2D2D2D',
+        'ivory-dark': '#E8E0D0',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],

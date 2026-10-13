@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Navigation } from '@/components/Navigation'
+import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { Footer } from '@/components/Footer'
 import { ProductDetailClient } from './ProductDetailClient'
 import { getProductById } from '@/lib/products'
@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <>
-      <Navigation />
+      <NavigationWrapper />
       <main id="main-content" role="main" className="pt-16 sm:pt-20">
         <ProductDetailClient product={product} />
       </main>

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Navigation } from '@/components/Navigation'
+import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { Footer } from '@/components/Footer'
 import { VisitUsClient } from './VisitUsClient'
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function VisitUsPage() {
   return (
     <>
-      <Navigation />
+      <NavigationWrapper />
       <main id="main-content" role="main" className="pt-16 sm:pt-20">
         <VisitUsClient />
       </main>
