@@ -299,13 +299,6 @@ export function Navigation() {
           </div>
 
           <div className="flex items-center gap-4 md:gap-6 z-10">
-            <Link
-              href="/collections"
-              className="hidden sm:inline-flex btn-primary text-sm"
-            >
-              View Collections
-            </Link>
-
             <button
               type="button"
               className="lg:hidden p-2 -ml-2 text-charcoal hover:text-maroon transition-colors"
@@ -427,14 +420,6 @@ export function Navigation() {
                   </div>
                 )
               })}
-
-              <Link
-                href="/collections"
-                className="mx-4 mt-6 btn-primary text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                View Collections
-              </Link>
             </div>
           </div>
         </div>

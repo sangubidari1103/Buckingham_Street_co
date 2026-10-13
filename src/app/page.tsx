@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { Footer } from '@/components/Footer'
-import { Hero } from '@/components/Hero'
+import { HeroSlideshow } from '@/components/HeroSlideshow'
 import { FeaturedCollections } from '@/components/FeaturedCollections'
 import { EditorialCampaign } from '@/components/EditorialCampaign'
 import { BrandOffering } from '@/components/BrandOffering'
@@ -19,7 +19,7 @@ export default function HomePage() {
     <>
       <NavigationWrapper />
       <main id="main-content" role="main">
-        <Hero />
+        <HeroSlideshow />
         <FeaturedCollections />
         <EditorialCampaign />
         <BrandOffering />
