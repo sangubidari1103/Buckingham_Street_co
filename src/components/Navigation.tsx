@@ -205,9 +205,9 @@ export function Navigation() {
               <Image
                 src="/images/logo.png"
                 alt=""
-                width={48}
-                height={48}
-                className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                width={307}
+                height={130}
+                className="h-12 sm:h-16 w-auto object-contain"
                 priority
                 aria-hidden="true"
               />
