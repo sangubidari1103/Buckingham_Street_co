@@ -85,9 +85,9 @@ export function VisitUsCTA() {
             </div>
 
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-midnight/5">
-              {contact.mapsUrl ? (
+              {contact.mapsEmbedUrl ? (
                 <iframe
-                  src={contact.mapsUrl}
+                  src={contact.mapsEmbedUrl}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -107,7 +107,7 @@ export function VisitUsCTA() {
                       Google Maps embed will appear once configured
                     </p>
                     <p className="text-midnight/40 text-sm mt-1">
-                      Add maps URL to <code className="not-italic font-mono text-xs bg-midnight/10 px-1.5 py-0.5 rounded">src/config/business.ts</code>
+                      Add maps embed URL to <code className="not-italic font-mono text-xs bg-midnight/10 px-1.5 py-0.5 rounded">src/config/business.ts</code>
                     </p>
                   </div>
                 </div>

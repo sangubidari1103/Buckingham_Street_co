@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { businessConfig } from '@/config/business'
+import { categories, type Category } from '@/lib/products'
 
 interface MegaMenuItem {
   label: string
@@ -21,85 +22,42 @@ interface MegaMenuContent {
   [key: string]: MegaMenuColumn[]
 }
 
+const buildCollectionsMegaMenu = (): MegaMenuColumn[] => {
+  const filteredCategories = categories.filter(
+    (cat) => cat.value === 'formalwear' || cat.value === 'wedding' || cat.value === 'blazers'
+  )
+
+  return [
+    {
+      title: 'Categories',
+      items: filteredCategories.map((cat) => ({
+        label: cat.label,
+        href: `/collections?category=${cat.value}`,
+      })),
+    },
+    {
+      title: 'By Occasion',
+      items: [
+        { label: 'Business', href: '/collections?occasion=business' },
+        { label: 'Wedding', href: '/collections?occasion=wedding' },
+        { label: 'Black Tie', href: '/collections?occasion=black-tie' },
+        { label: 'Cocktail', href: '/collections?occasion=cocktail' },
+      ],
+    },
+  ]
+}
+
+const collectionsMegaMenuData = buildCollectionsMegaMenu()
+
 const megaMenuData: MegaMenuContent = {
-  'suits-blazers': [
-    {
-      title: 'Suits',
-      items: [
-        { label: 'All Suits', href: '/collections?category=formalwear' },
-        { label: 'Two-Piece Suits', href: '/collections?category=formalwear' },
-        { label: 'Three-Piece Suits', href: '/collections?category=formalwear' },
-        { label: 'Formal Suits', href: '/collections?category=formalwear' },
-      ],
-    },
-    {
-      title: 'Blazers',
-      items: [
-        { label: 'Blazers', href: '/collections?category=blazers' },
-        { label: 'Occasion Blazers', href: '/collections?category=blazers' },
-      ],
-    },
-  ],
-  'bundis': [
-    {
-      title: 'Bundis & Nehru Jackets',
-      items: [
-        { label: 'Classic Bundis', href: '/collections?category=blazers' },
-        { label: 'Wedding Bundis', href: '/collections?category=wedding' },
-        { label: 'Festive Bundis', href: '/collections?category=wedding' },
-        { label: 'Contemporary Nehru Jackets', href: '/collections?category=blazers' },
-      ],
-    },
-  ],
-  'wedding-occasion': [
-    {
-      title: 'Wedding & Occasion',
-      items: [
-        { label: 'Wedding Collection', href: '/collections?category=wedding' },
-        { label: "Groom's Edit", href: '/collections?category=wedding' },
-        { label: 'Festive Wear', href: '/collections?category=wedding' },
-        { label: 'Celebration Looks', href: '/collections?occasion=cocktail' },
-      ],
-    },
-  ],
-  'shirts-formalwear': [
-    {
-      title: 'Shirts',
-      items: [
-        { label: 'Formal Shirts', href: '/collections?category=shirts' },
-        { label: 'Smart Casuals', href: '/collections?category=smart-casual' },
-      ],
-    },
-    {
-      title: 'Formalwear',
-      items: [
-        { label: 'Trousers', href: '/collections?category=smart-casual' },
-        { label: 'Accessories', href: '/collections' },
-      ],
-    },
-  ],
-  'collections': [
-    {
-      title: 'Collections',
-      items: [
-        { label: 'Signature Collection', href: '/collections' },
-        { label: 'Contemporary Indian Classics', href: '/collections' },
-        { label: 'Wedding Edit', href: '/collections?category=wedding' },
-        { label: 'Everyday Elegance', href: '/collections?category=smart-casual' },
-      ],
-    },
-  ],
+  collections: collectionsMegaMenuData,
 }
 
 const mainNavItems = [
-  { key: 'new-arrivals', label: 'New Arrivals', href: '/collections', hasMegaMenu: false },
-  { key: 'suits-blazers', label: 'Suits & Blazers', href: '/collections?category=formalwear', hasMegaMenu: true },
-  { key: 'bundis', label: 'Bundis', href: '/collections?category=blazers', hasMegaMenu: true },
-  { key: 'wedding-occasion', label: 'Wedding & Occasion', href: '/collections?category=wedding', hasMegaMenu: true },
-  { key: 'shirts-formalwear', label: 'Shirts & Formalwear', href: '/collections?category=shirts', hasMegaMenu: true },
-  { key: 'collections', label: 'Collections', href: '/collections', hasMegaMenu: true },
-  { key: 'our-story', label: 'Our Story', href: '/our-story', hasMegaMenu: false },
-  { key: 'visit-us', label: 'Visit Us', href: '/visit-us', hasMegaMenu: false },
+  { key: 'all', label: 'ALL', href: '/collections', hasMegaMenu: false },
+  { key: 'collections', label: 'COLLECTIONS', href: '/collections', hasMegaMenu: true },
+  { key: 'our-story', label: 'OUR STORY', href: '/our-story', hasMegaMenu: false },
+  { key: 'visit-us', label: 'VISIT US', href: '/visit-us', hasMegaMenu: false },
 ]
 
 export function Navigation() {
@@ -109,8 +67,11 @@ export function Navigation() {
   const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({})
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const router = useRouter()
   const megaMenuRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLElement>(null)
+
+  const isHomepage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -184,22 +145,24 @@ export function Navigation() {
     }))
   }
 
+  const showWhiteHeader = isHomepage && !isScrolled
+
   return (
     <header
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-        isScrolled
-          ? 'bg-ivory/95 backdrop-blur-md border-b border-charcoal/10 shadow-sm'
-          : 'bg-transparent'
+        showWhiteHeader
+          ? 'bg-transparent'
+          : 'bg-white border-b border-charcoal/10 shadow-sm'
       }`}
       role="banner"
     >
-      <nav className="container-custom" aria-label="Main navigation">
-        <div className="flex h-16 md:h-20 lg:h-24 items-center justify-between relative">
-          <div className="flex items-center gap-6 z-10">
+      <nav className="w-full" aria-label="Main navigation">
+        <div className="flex items-center h-16 md:h-20 lg:h-24 px-4 sm:px-6 lg:px-8 gap-8">
+          <div className="flex items-center gap-3 flex-shrink-0 min-w-0" role="brand">
             <Link
               href="/"
-              className="flex items-center gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2 focus-visible:ring-offset-ivory rounded"
+              className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded"
               aria-label={`${businessConfig.brand.retail} · ${businessConfig.brand.parent} - Home`}
             >
               <Image
@@ -207,21 +170,23 @@ export function Navigation() {
                 alt=""
                 width={307}
                 height={130}
-                className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+                className="h-9 md:h-10 lg:h-12 w-auto object-contain flex-shrink-0"
                 priority
                 aria-hidden="true"
               />
-              <div className="flex flex-col hidden sm:block">
-                <span className="text-charcoal font-serif text-lg md:text-xl lg:text-2xl font-medium tracking-tight leading-snug">
-                  {businessConfig.brand.retail}
+              <div className="flex items-baseline flex-wrap hidden sm:flex leading-tight gap-1">
+                <span className={`${showWhiteHeader ? 'text-white' : 'text-charcoal'} font-serif text-lg md:text-xl lg:text-2xl font-medium tracking-tight uppercase whitespace-nowrap transition-colors duration-300`}>
+                  SUIT GALLERIA
                 </span>
-                <span className="text-charcoal/60 text-xs tracking-widest uppercase font-sans leading-none">
-                  {businessConfig.brand.parent}
+                <span className={`${showWhiteHeader ? 'text-white/40' : 'text-charcoal/40'} transition-colors duration-300`} aria-hidden="true">|</span>
+                <span className={`${showWhiteHeader ? 'text-white/60' : 'text-charcoal/60'} font-sans text-xs md:text-sm tracking-widest uppercase leading-none whitespace-nowrap transition-colors duration-300`}>
+                  BUCKINGHAM STREET CO.
                 </span>
               </div>
             </Link>
+          </div>
 
-            <div className="hidden md:flex items-center gap-1" role="menubar">
+          <div className="hidden md:flex items-center gap-1 flex-1 min-w-0" role="menubar">
               {mainNavItems.map((item) => {
                 const isActive = isActivePath(item.href)
                 const hasMegaMenu = item.hasMegaMenu
@@ -249,10 +214,20 @@ export function Navigation() {
                       aria-controls={hasMegaMenu ? `mega-menu-${item.key}` : undefined}
                       className={`px-4 py-3 text-sm tracking-wider uppercase transition-colors duration-200 rounded-md ${
                         isActive
-                          ? 'text-maroon font-medium'
-                          : 'text-charcoal/70 hover:text-charcoal'
+                          ? showWhiteHeader
+                            ? 'text-white font-medium'
+                            : 'text-maroon font-medium'
+                          : showWhiteHeader
+                            ? 'text-white/70 hover:text-white'
+                            : 'text-charcoal/70 hover:text-charcoal'
                       }`}
                       onKeyDown={(e) => handleKeyDown(e, item.key)}
+                      onClick={() => {
+                        if (!hasMegaMenu) {
+                          router.push(item.href)
+                          setOpenMegaMenu(null)
+                        }
+                      }}
                     >
                       {item.label}
                       {hasMegaMenu && (
@@ -275,7 +250,7 @@ export function Navigation() {
                         ref={megaMenuRef}
                         id={`mega-menu-${item.key}`}
                         role="menu"
-                        className="absolute left-0 top-full w-full lg:w-screen lg:left-[-12rem] lg:max-w-[calc(100vw-24rem)] bg-ivory border-t border-charcoal/10 shadow-xl rounded-b-2xl p-6 lg:p-8 animate-slide-down"
+                        className="absolute left-0 top-full w-full lg:w-screen lg:left-[-12rem] lg:max-w-[calc(100vw-24rem)] bg-white border-t border-charcoal/10 shadow-xl rounded-b-2xl p-6 lg:p-8 animate-slide-down"
                         onKeyDown={handleMegaMenuKeyDown}
                       >
                         <div className="container-custom">
@@ -307,12 +282,12 @@ export function Navigation() {
                 )
               })}
             </div>
-          </div>
 
-          <div className="flex items-center gap-4 md:gap-6 z-10">
-            <button
+            <div className="flex items-center z-10 flex-shrink-0">
+              <button
               type="button"
-              className="md:hidden p-2 text-charcoal hover:text-maroon transition-colors"
+              className="md:hidden p-2 transition-colors"
+              style={{ color: showWhiteHeader ? 'white' : 'rgb(28 28 28)' }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -352,7 +327,7 @@ export function Navigation() {
           }`}
           aria-hidden={!isMobileMenuOpen}
         >
-          <div className="pb-6 border-t border-charcoal/10">
+          <div className="pb-6 border-t border-charcoal/10 bg-white">
             <div className="flex flex-col gap-1 pt-6">
               {mainNavItems.map((item) => {
                 const isActive = isActivePath(item.href)
