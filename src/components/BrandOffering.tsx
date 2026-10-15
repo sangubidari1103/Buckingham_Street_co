@@ -52,7 +52,7 @@ const offerings: OfferingItem[] = [
 export function BrandOffering() {
   return (
     <section
-      className="py-20 sm:py-28 lg:py-32 bg-ivory"
+      className="pt-20 sm:pt-28 lg:pt-32 pb-10 sm:pb-16 lg:pb-20 bg-ivory"
       aria-labelledby="offering-heading"
     >
       <div className="container-custom">
