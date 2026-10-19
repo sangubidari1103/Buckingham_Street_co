@@ -2,8 +2,6 @@ export type Category =
   | 'formalwear'
   | 'wedding'
   | 'blazers'
-  | 'shirts'
-  | 'smart-casual'
 
 export type Occasion =
   | 'business'
@@ -32,8 +30,6 @@ export const categories: { value: Category; label: string }[] = [
   { value: 'formalwear', label: 'Formalwear' },
   { value: 'wedding', label: 'Wedding & Occasion' },
   { value: 'blazers', label: 'Blazers' },
-  { value: 'shirts', label: 'Shirts' },
-  { value: 'smart-casual', label: 'Smart Casual' },
 ]
 
 export const occasions: { value: Occasion; label: string }[] = [
@@ -324,189 +320,6 @@ export const products: Product[] = [
     },
   },
 
-  // SHIRTS - 6 products
-  {
-    id: 'white-formal-shirt',
-    name: 'White Formal Shirt',
-    category: 'shirts',
-    occasions: ['business', 'wedding', 'black-tie'],
-    description:
-      'Crisp white poplin shirt with spread collar and French cuffs. The foundation of formal dressing.',
-    images: getProductImages('white-formal-shirt'),
-    details: {
-      fabric: '100% Cotton Poplin',
-      fit: 'Classic Regular',
-      origin: 'Made in Italy',
-      care: 'Machine Wash Cold',
-    },
-  },
-  {
-    id: 'light-blue-shirt',
-    name: 'Light Blue Shirt',
-    category: 'shirts',
-    occasions: ['business', 'everyday', 'cocktail'],
-    description:
-      'Pale blue twill shirt with subtle sheen. Versatile staple that pairs with any suit or blazer.',
-    images: getProductImages('light-blue-shirt'),
-    details: {
-      fabric: 'Cotton Twill',
-      fit: 'Contemporary Slim',
-      origin: 'Made in Italy',
-      care: 'Machine Wash Cold',
-    },
-  },
-  {
-    id: 'black-shirt',
-    name: 'Black Dress Shirt',
-    category: 'shirts',
-    occasions: ['cocktail', 'black-tie', 'everyday'],
-    description:
-      'Midnight black poplin shirt for evening wear. Clean lines with mother-of-pearl buttons.',
-    images: getProductImages('black-shirt'),
-    details: {
-      fabric: 'Cotton Poplin',
-      fit: 'Contemporary Slim',
-      origin: 'Made in Italy',
-      care: 'Machine Wash Cold',
-    },
-  },
-  {
-    id: 'striped-shirt',
-    name: 'Striped Oxford Shirt',
-    category: 'shirts',
-    occasions: ['business', 'everyday', 'casual'],
-    description:
-      'Blue and white university stripe on Oxford cloth. Button-down collar for smart-casual versatility.',
-    images: getProductImages('striped-shirt'),
-    details: {
-      fabric: 'Cotton Oxford Cloth',
-      fit: 'Classic Regular',
-      origin: 'Made in Italy',
-      care: 'Machine Wash Cold',
-    },
-  },
-  {
-    id: 'patterned-shirt',
-    name: 'Patterned Silk Shirt',
-    category: 'shirts',
-    occasions: ['cocktail', 'wedding', 'everyday'],
-    description:
-      'Micro-geometric print on silk-cotton blend. Subtle pattern adds character to tailored ensembles.',
-    images: getProductImages('patterned-shirt'),
-    details: {
-      fabric: 'Silk-Cotton Blend',
-      fit: 'Contemporary Regular',
-      origin: 'Made in Italy',
-      care: 'Dry Clean Only',
-    },
-  },
-  {
-    id: 'premium-casual-shirt',
-    name: 'Premium Casual Shirt',
-    category: 'shirts',
-    occasions: ['casual', 'everyday', 'business'],
-    description:
-      'Relaxed-fit chambray shirt with pearl snaps. Elevated casualwear in premium Japanese cotton.',
-    images: getProductImages('premium-casual-shirt'),
-    details: {
-      fabric: 'Japanese Chambray Cotton',
-      fit: 'Relaxed Regular',
-      origin: 'Made in Japan',
-      care: 'Machine Wash Cold',
-    },
-  },
-
-  // SMART CASUAL - 6 products
-  {
-    id: 'linen-suit',
-    name: 'Linen Suit',
-    category: 'smart-casual',
-    occasions: ['wedding', 'cocktail', 'everyday'],
-    description:
-      'Unstructured beige linen suit for summer occasions. Breathable elegance with relaxed tailoring.',
-    images: getProductImages('linen-suit'),
-    details: {
-      fabric: 'Pure Italian Linen',
-      fit: 'Relaxed Contemporary',
-      origin: 'Tailored in London',
-      care: 'Dry Clean Only',
-    },
-  },
-  {
-    id: 'knit-polo',
-    name: 'Merino Knit Polo',
-    category: 'smart-casual',
-    occasions: ['casual', 'everyday', 'business'],
-    description:
-      'Fine-gauge merino wool polo in navy. Elevated knitwear that bridges casual and smart.',
-    images: getProductImages('knit-polo'),
-    details: {
-      fabric: 'Extra-Fine Merino Wool',
-      fit: 'Contemporary Regular',
-      origin: 'Made in Italy',
-      care: 'Hand Wash Cold',
-    },
-  },
-  {
-    id: 'overshirt',
-    name: 'Wool Overshirt',
-    category: 'smart-casual',
-    occasions: ['casual', 'everyday', 'cocktail'],
-    description:
-      'Mid-weight wool overshirt in charcoal. Wear as a light jacket or layered piece.',
-    images: getProductImages('overshirt'),
-    details: {
-      fabric: 'Wool-Cashmere Blend',
-      fit: 'Relaxed Regular',
-      origin: 'Made in Italy',
-      care: 'Dry Clean Only',
-    },
-  },
-  {
-    id: 'chinos',
-    name: 'Tailored Chinos',
-    category: 'smart-casual',
-    occasions: ['business', 'everyday', 'casual'],
-    description:
-      'Sand-coloured cotton twill chinos with tailored finish. The smart-casual trouser essential.',
-    images: getProductImages('chinos'),
-    details: {
-      fabric: 'Cotton Twill with Stretch',
-      fit: 'Contemporary Tapered',
-      origin: 'Made in Italy',
-      care: 'Machine Wash Cold',
-    },
-  },
-  {
-    id: 'relaxed-tailored-trousers',
-    name: 'Relaxed Wool Trousers',
-    category: 'smart-casual',
-    occasions: ['business', 'everyday', 'cocktail'],
-    description:
-      'Mid-grey tropical wool trousers with relaxed seat and tapered leg. Comfort meets refinement.',
-    images: getProductImages('relaxed-tailored-trousers'),
-    details: {
-      fabric: 'Tropical Wool',
-      fit: 'Relaxed Tapered',
-      origin: 'Tailored in London',
-      care: 'Dry Clean Only',
-    },
-  },
-  {
-    id: 'refined-everyday-blazer',
-    name: 'Unstructured Cotton Blazer',
-    category: 'smart-casual',
-    occasions: ['casual', 'everyday', 'business'],
-    description:
-      'Navy cotton-linen blazer with soft shoulders. The ultimate refined everyday jacket.',
-    images: getProductImages('refined-everyday-blazer'),
-    details: {
-      fabric: 'Cotton-Linen Blend',
-      fit: 'Relaxed Unstructured',
-      origin: 'Tailored in London',
-      care: 'Dry Clean Only',
-    },
-  },
 ]
 
 export function getProductById(id: string): Product | undefined {

@@ -24,7 +24,6 @@ export function Manufacturing() {
       details: [
         'Italian mills: Vitale Barberis Canonico, Loro Piana',
         'UK wool: Huddersfield Fine Worsteds',
-        'Shirt-making: Naples, Italy',
         'Accessories: Florence, Italy',
       ],
     },
@@ -35,7 +34,7 @@ export function Manufacturing() {
       details: [
         'Hand-stitched lapels and buttonholes',
         'Full canvas construction on suits',
-        'Mother-of-pearl buttons on shirts',
+        'Mother-of-pearl buttons',
         'Lifetime alteration guarantee on bespoke',
       ],
     },

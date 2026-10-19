@@ -78,8 +78,6 @@ export function FeaturedCollections() {
     'formalwear',
     'wedding',
     'blazers',
-    'shirts',
-    'smart-casual',
   ]
 
   return (

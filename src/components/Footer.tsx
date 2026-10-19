@@ -68,14 +68,6 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/collections?category=shirts"
-                  className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
-                >
-                  Shirts & Formalwear
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/collections"
                   className="text-ivory/70 hover:text-gold transition-colors duration-200 text-sm"
                 >

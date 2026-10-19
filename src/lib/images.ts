@@ -23,22 +23,6 @@ const LOCAL = {
   blazer_linen: '/images/blazer_linen.jpg',        // Beige linen blazer
   blazer_grey: '/images/blazer_grey.jpg',          // Textured grey blazer
   blazer_windowpane: '/images/blazer_windowpane.jpg', // Blue windowpane blazer
-
-  // ===== SHIRTS =====
-  shirt_white: '/images/shirt_white.jpg',          // White formal shirt
-  shirt_light_blue: '/images/shirt_light_blue.jpg', // Light blue shirt
-  shirt_black: '/images/shirt_black.jpg',          // Black dress shirt
-  shirt_striped: '/images/shirt_striped.jpg',      // Striped Oxford shirt
-  shirt_patterned: '/images/shirt_patterned.jpg',  // Patterned silk shirt
-  shirt_chambray: '/images/shirt_chambray.jpg',    // Premium casual chambray
-
-  // ===== SMART CASUAL =====
-  sc_linen_suit: '/images/sc_linen_suit.jpg',      // Linen suit
-  sc_knit_polo: '/images/sc_knit_polo.jpg',        // Merino knit polo
-  sc_overshirt: '/images/sc_overshirt.jpg',        // Wool overshirt
-  sc_chinos: '/images/sc_chinos.jpg',              // Tailored chinos
-  sc_trousers: '/images/sc_trousers.jpg',          // Relaxed wool trousers
-  sc_cotton_blazer: '/images/sc_cotton_blazer.jpg', // Unstructured cotton blazer
 } as const
 
 function l(id: keyof typeof LOCAL): string {
@@ -50,11 +34,9 @@ export const categoryImages: Record<string, string> = {
   formalwear: l('suit_navy'),
   wedding: l('suit_ivory'),
   blazers: l('blazer_navy'),
-  shirts: l('shirt_white'),
-  'smart-casual': l('sc_linen_suit'),
 }
 
-// Product images - 30 products, each with 2 unique images
+// Product images - 18 products, each with 2 unique images
 export const productImages: Record<string, string[]> = {
   // FORMALWEAR (6 products)
   'navy-formal-suit': [l('suit_navy'), l('suit_charcoal')],
@@ -79,22 +61,6 @@ export const productImages: Record<string, string[]> = {
   'beige-linen-blazer': [l('blazer_linen'), l('blazer_grey')],
   'textured-grey-blazer': [l('blazer_grey'), l('blazer_green')],
   'blue-windowpane-blazer': [l('blazer_windowpane'), l('blazer_navy')],
-
-  // SHIRTS (6 products)
-  'white-formal-shirt': [l('shirt_white'), l('shirt_light_blue')],
-  'light-blue-shirt': [l('shirt_light_blue'), l('shirt_striped')],
-  'black-shirt': [l('shirt_black'), l('shirt_white')],
-  'striped-shirt': [l('shirt_striped'), l('shirt_patterned')],
-  'patterned-shirt': [l('shirt_patterned'), l('shirt_chambray')],
-  'premium-casual-shirt': [l('shirt_chambray'), l('shirt_striped')],
-
-  // SMART CASUAL (6 products)
-  'linen-suit': [l('sc_linen_suit'), l('sc_chinos')],
-  'knit-polo': [l('sc_knit_polo'), l('sc_overshirt')],
-  'overshirt': [l('sc_overshirt'), l('sc_cotton_blazer')],
-  'chinos': [l('sc_chinos'), l('sc_trousers')],
-  'relaxed-tailored-trousers': [l('sc_trousers'), l('sc_linen_suit')],
-  'refined-everyday-blazer': [l('sc_cotton_blazer'), l('sc_knit_polo')],
 }
 
 // Hero & editorial images
@@ -117,8 +83,6 @@ function fallback(category: string): string {
     formalwear: 'Formal Suit',
     wedding: 'Wedding Attire',
     blazers: 'Blazer',
-    shirts: 'Dress Shirt',
-    'smart-casual': 'Smart Casual',
   }
   const label = labels[category] || 'Product'
   return `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"%3E%3Crect fill="%23F3EEE4"/%3E%3Ctext x="400" y="500" font-family="Georgia,serif" font-size="18" fill="%23806342" text-anchor="middle"%3E${encodeURIComponent(label)}%3C/text%3E%3C/svg%3E`

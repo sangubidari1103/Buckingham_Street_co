@@ -14,8 +14,6 @@ function categoryFallback(category: string): string {
     formalwear: 'Formal Suit',
     wedding: 'Wedding Attire',
     blazers: 'Blazer',
-    shirts: 'Dress Shirt',
-    'smart-casual': 'Smart Casual',
     accessories: 'Accessories',
     belts: 'Leather Belt',
   }
