@@ -11,7 +11,7 @@ import { LOOKS } from '@/config/looks'
 import { RunwayModel } from './RunwayModel'
 
 const AUTO_PLAY_INTERVAL = 5000
-const DESKTOP_RADIUS = 640
+const DESKTOP_RADIUS = 540
 const MOBILE_RADIUS = 320
 
 interface RunwayCarouselProps {
@@ -345,7 +345,7 @@ export function RunwayCarousel({ className = '', onLookSelect }: RunwayCarouselP
 
   return (
     <section
-      className={`relative w-full overflow-hidden ${className}`}
+      className={`relative w-full overflow-hidden min-h-[680px] sm:min-h-[740px] lg:min-h-[800px] ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

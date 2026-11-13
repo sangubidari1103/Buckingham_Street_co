@@ -40,29 +40,36 @@ export function RunwayModel({
   // Distance from front (0 deg): 0 = front centre, 180 = back.
   const distanceFromFront = Math.min(screenAngle, 360 - screenAngle) / 180
 
-  const scale = 1 - distanceFromFront * 0.45 // active/front ~1, back ~0.55
-  const opacity = 1 - distanceFromFront * 0.7 // front 1, back 0.3
-  const blur = distanceFromFront * 10 // back models blurred
-  const zIndex = Math.round(100 - distanceFromFront * 50)
+  const scale = 1 - distanceFromFront * 0.4 // active/front ~1, back ~0.6
+  const opacity = 1 - distanceFromFront * 0.55 // front 1, back 0.45
+  const blur = distanceFromFront * 8 // back models softly blurred
+  const zIndex = Math.round(100 - distanceFromFront * 40)
 
-  const isFront = screenAngle < 90 || screenAngle > 270
+  // Explicit dimensions so the absolute-centered model is visible and the
+  // translate(-50%, -50%) centering lands at the ring centre.
+  const width = 260
+  const height = 340
 
   const style: React.CSSProperties = {
     position: 'absolute',
     top: '50%',
     left: '50%',
+    width,
+    height,
     transform: `translate(-50%, -50%) rotateY(${modelAngle}deg) translateZ(${radius}px) scale(${scale})`,
     opacity,
     filter: blur > 0 ? `blur(${blur}px)` : 'none',
     zIndex,
-    pointerEvents: isFront || active ? 'auto' : 'none',
+    pointerEvents: 'auto',
     userSelect: 'none',
     WebkitUserSelect: 'none',
-    transition: 'transform 0.6s ease-out, opacity 0.6s ease-out, filter 0.6s ease-out',
+    transition:
+      'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.7s ease, filter 0.7s ease',
   }
 
   const innerStyle: React.CSSProperties = {
     transform: `rotateY(${-modelAngle}deg)`, // face camera
+    transformStyle: 'preserve-3d',
   }
 
   return (
@@ -71,7 +78,7 @@ export function RunwayModel({
       style={style}
       aria-label={name}
       role="button"
-      tabIndex={active || isFront ? 0 : -1}
+      tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
@@ -83,21 +90,21 @@ export function RunwayModel({
     >
       <div
         className="
-          relative w-full max-w-xs md:max-w-sm
+          relative w-full h-full max-w-none max-h-none
           group
           overflow-hidden rounded-xl
           border border-charcoal/20
           shadow-2xl
-          transition-transform duration-500
+          bg-charcoal/5
         "
         style={innerStyle}
       >
-        <div className="relative aspect-[3/4]">
+        <div className="relative w-full h-full aspect-[3/4]">
           <Image
             src={image}
             alt={alt}
             fill
-            className="object-cover"
+            className="object-cover object-center"
             sizes="(max-width: 640px) 90vw, 320px"
             loading={active ? 'eager' : 'lazy'}
             priority={active}
@@ -119,11 +126,11 @@ export function RunwayModel({
             />
           ))}
         </div>
-        <div className="p-4">
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-charcoal/80 backdrop-blur-sm">
           <p className="text-xs tracking-widest uppercase font-sans text-gold font-medium mb-1">
             {title}
           </p>
-          <h3 className="font-serif text-lg sm:text-xl font-medium text-charcoal leading-tight">
+          <h3 className="font-serif text-lg sm:text-xl font-medium text-ivory leading-tight">
             {name}
           </h3>
         </div>
